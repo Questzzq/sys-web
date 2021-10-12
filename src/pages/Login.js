@@ -1,25 +1,40 @@
 import React from 'react'
-import {Form, Input, Button, Checkbox, Card} from 'antd';
+import {Form, Input, Button, Checkbox, Card, message} from 'antd';
 import "./login.css"
-// import { setToken } from "../utils/auth"
 import { loginApi } from "../services/auth";
 import { setToken } from '../utils/auth';
 
 function Login(props) {
     const onFinish = (values) => {
         loginApi({
-            id: values.username,
+            userId: values.username,
             password: values.password
         }).then(res => {
-            setToken(res.data.token);
-            props.history.push("/admin/ArticleList");
-            console.log(res);
-            console.log(res.data.token);
+            if(res.code===200) {
+                setToken(res.data.token);
+                props.history.push("/admin/ArticleList");
+            } else {
+                if(loginForDev(values)) {
+                    setToken('testToken');
+                    props.history.push("/admin/ArticleList");
+                } else {
+                    message.info(res.msg);
+                }
+            }
         })
-        // setToken(values.username+"/"+values.password);
-        // console.log('Success:', values);
-        // props.history.push("/admin/ArticleList");
     };
+
+    /**
+     * 前端开发的时候用
+     * @param {*} values 
+     * @returns 
+     */
+    const loginForDev = (values) => {
+        if(values.username === 'admin' && values.password === 'admin') {
+            return true;
+        }
+        return false;
+    } 
 
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
