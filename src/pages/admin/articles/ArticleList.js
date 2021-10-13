@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Card, Table, Popconfirm } from 'antd'
-import { articlePageListApi } from '../../../services/article'
+import { Button, Card, Table, Popconfirm, message } from 'antd'
+import { articlePageListApi, delOneApi } from '../../../services/article'
 
 function ArticleList(props) {
     // 定义局部状态
@@ -63,6 +63,17 @@ function ArticleList(props) {
                             onConfirm={() => {
                                 console.log('用户确认删除!');
                                 // Todo 此处调用Api接口
+                                delOneApi(record.articleId).then(res => {
+                                    if(res.code === 200) {
+                                        message.info('删除文章 ' + record.title + ' 成功!');
+                                        loadData(1, 10);
+                                    } else {
+                                        message.info(res.msg);
+                                    }
+                                }).catch(err => {
+                                    console.log(err);
+                                    message.info('删除失败!')
+                                })
                             }}
                         >
                             <Button
