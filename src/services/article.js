@@ -1,18 +1,16 @@
 import { get, post, put, del } from '../utils/request'
 
-const baseUrl = "http://localhost:8080/"
-
 /**
  * 獲取文章列表
  * @param page
  * @returns {Promise<AxiosResponse<never>>}
  */
-export function articlesListApi(page = 1) {
-  return get(baseUrl, { page });
+export function articlePageListApi(pageNum = 1, pageSize = 10) {
+  return get('/api/article/getPageList', { pageNum, pageSize });
 }
 
 export function createArticleApi(data) {
-  return post(baseUrl, data);
+  return post('/api/create', data);
 }
 
 export function modifyArticleApi(id, data) {

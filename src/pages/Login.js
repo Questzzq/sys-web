@@ -10,7 +10,8 @@ function Login(props) {
             userId: values.username,
             password: values.password
         }).then(res => {
-            if(res.code===200) {
+            if(res.code === 200) {
+                message.info('登录成功！欢迎'+res.data.username);
                 setToken(res.data.token);
                 props.history.push("/admin/ArticleList");
             } else {
@@ -21,6 +22,8 @@ function Login(props) {
                     message.info(res.msg);
                 }
             }
+        }).catch(err => {
+            message.info('用户不存在');
         })
     };
 

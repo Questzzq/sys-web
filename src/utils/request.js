@@ -11,7 +11,7 @@ const instance = axios.create({
 // 全局请求拦截，发送请求之前执行
 instance.interceptors.request.use(function (config) {
   // Do something before request is sent
-  config.headers['authorization'] = 'Bearer' + getToken();
+  config.headers['authorization'] = 'Bearer ' + getToken();
   return config;
 }, function (error) {
   // Do something with request error
