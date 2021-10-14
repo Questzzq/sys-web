@@ -1,12 +1,16 @@
 import { get, post, put } from '../utils/request'
 
 /**
- * 獲取文章列表
+ * 获取文章列表
  * @param page
  * @returns {Promise<AxiosResponse<never>>}
  */
 export function articlePageListApi(pageNum = 1, pageSize = 10) {
   return get('/api/article/getPageList', { pageNum, pageSize });
+}
+
+export function getArticleContent(articleId) {
+  return get('/api/article/getArticle', { articleId });
 }
 
 /**

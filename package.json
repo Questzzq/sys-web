@@ -36,6 +36,7 @@
     "eslint-plugin-testing-library": "^3.9.2",
     "eslint-webpack-plugin": "^2.5.2",
     "file-loader": "6.1.1",
+    "for-editor": "^0.3.5",
     "fs-extra": "^9.0.1",
     "html-webpack-plugin": "4.5.0",
     "http-proxy-middleware": "^2.0.1",
@@ -57,8 +58,10 @@
     "react-app-polyfill": "^2.0.0",
     "react-dev-utils": "^11.0.3",
     "react-dom": "^17.0.2",
+    "react-markdown": "^7.0.1",
     "react-refresh": "^0.8.3",
     "react-router-dom": "^5.3.0",
+    "react-syntax-highlighter": "^15.4.4",
     "resolve": "1.18.1",
     "resolve-url-loader": "^3.1.2",
     "sass-loader": "^10.0.5",
@@ -152,5 +155,8 @@
     "presets": [
       "react-app"
     ]
+  },
+  "devDependencies": {
+    "raw-loader": "^4.0.2"
   }
 }

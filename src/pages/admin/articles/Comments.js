@@ -1,10 +1,9 @@
 import React from 'react'
+import MdReader from "./MdReader"
 
 function Comments() {
     return (
-        <div>
-            <h1>评论模块</h1>
-        </div>
+        <MdReader />
     )
 }
 
